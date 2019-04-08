@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/users_test');
-mongoose.connection.once('open', () => {
-    console.log('Good to go')
-}).on('error', (error) => {
-    console.warn('Warning', error)
+mongoose.connect('mongodb://localhost/user_test', {
+    useNewUrlParser: true
 })
 
-beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
-        //Ready to run the Test
+//Before Runs Only Once SPecifying the before runningthe Project
+before((done) => {
+    mongoose.connection.once('open', () => {
+        // console.log('Connection Succesful')
         done();
-    });
+    }).on('error', (error) => {
+        console.log("Error", error);
+    })
 
 })
