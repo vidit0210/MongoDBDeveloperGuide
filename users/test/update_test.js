@@ -20,11 +20,15 @@ describe(('Update test'), () => {
             name: 'Vidit'
         }).then(() => done())
     })
-    it('Model Class and Update', (done) => {
+    it('Model Class and FindOneUpdate', (done) => {
         User.findOneAndUpdate({
             name: 'rahul'
         }, {
             name: 'yolo'
         }).then(() => done())
+    })
+
+    it('Model Class and FindOneAndUpdateByID', (done) => {
+        User.findByIdAndUpdate
     })
 })
