@@ -27,4 +27,13 @@ describe('Reading from the Database', () => {
             done()
         })
     })
+
+    it('Find a user by a Particular id', (done) => {
+        User.findOne({
+            _id: user_name._id
+        }).then((user) => {
+            assert(user.name === 'Vidit')
+            done()
+        })
+    })
 })
