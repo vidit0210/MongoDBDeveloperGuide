@@ -4,7 +4,10 @@ const {
 } = mongoose;
 
 const UserSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    require: [true, 'Name is Required']
+  },
   postCount: Number
 })
 

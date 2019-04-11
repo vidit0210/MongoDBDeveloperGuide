@@ -5,7 +5,8 @@ describe(('Update test'), () => {
     let user_name;
     beforeEach((done) => {
         user_name = new User({
-            name: 'rahul'
+            name: 'rahul',
+            postCount: 1
         })
         user_name.save().then(() => {
             done()
@@ -14,7 +15,7 @@ describe(('Update test'), () => {
 
 
     it('Model Class and Update', (done) => {
-        User.update({
+        User.updateOne({
             name: 'rahul'
         }, {
             name: 'Vidit'
@@ -28,7 +29,24 @@ describe(('Update test'), () => {
         }).then(() => done())
     })
 
-    it('Model Class and FindOneAndUpdateByID', (done) => {
-        User.findByIdAndUpdate
+    // it('Model Class and FindOneAndUpdateByID', (done) => {
+    //     User.findByIdAndUpdate({
+
+    //     })
+    // })
+
+    it('A user can have their Post count updated by 1', (done) => {
+        User.updateOne({
+            name: 'rahul'
+        }, {
+            $inc: {
+                postCount: 1
+            }
+        }).then(() => User.findOne({
+            name: 'rahul'
+        })).then((user) => {
+            assert(user.postCount === 2)
+            done()
+        })
     })
 })
